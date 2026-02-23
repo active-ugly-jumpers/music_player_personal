@@ -1,0 +1,45 @@
+services:
+  player-backend:
+    image: sentriz/gonic:latest
+    container_name: player-backend
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Berlin"
+      GONIC_MUSIC_PATH: "/music"
+      GONIC_PODCAST_PATH: "/podcasts"
+      GONIC_CACHE_PATH: "/cache"
+      GONIC_DB_PATH: "/data/gonic.db"
+      GONIC_SCAN_INTERVAL: "720"
+      GONIC_SCAN_AT_START_ENABLED: "true"
+      GONIC_SCAN_WATCHER_ENABLED: "true"
+      GONIC_MULTI_VALUE_ALBUM_ARTIST: "multi"
+      GONIC_MULTI_VALUE_ARTIST: "multi"
+    volumes:
+      - ~/Music:/music:ro
+      - ./backend/data:/data
+      - ./backend/cache:/cache
+      - ./backend/podcasts:/podcasts
+      - ./backend/playlists:/playlists
+    ports:
+      - "4747:80"
+    networks:
+      - music-network
+
+  player-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: player-frontend
+    restart: unless-stopped
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "4748:80"
+    depends_on:
+      - player-backend
+    networks:
+      - music-network
+
+networks:
+  music-network:
+    driver: bridge

@@ -1,27 +1,10 @@
-import { useEffect, useState } from "react";
-import { fetchLabels } from "../../lib/api";
-import type { LabelsMap } from "../../types/gonic";
+import { useLabels } from "../../hooks/useLabels";
 
 export const LabelsList = () => {
-  const [labels, setLabels] = useState<LabelsMap>({});
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchLabels();
-        setLabels(data);
-      } catch (error) {
-        console.error("Failed to fetch labels:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { labels, isLoading, error } = useLabels();
 
   if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <ul>
