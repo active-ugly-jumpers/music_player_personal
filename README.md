@@ -1,12 +1,12 @@
-# music player
-
-_personal_
+# music player [personal]
 
 a personal music player with custom minimal ui and nerdy library organization by record labels.
 
 for backend uses [gonic](https://github.com/sentriz/gonic) - a music streaming server that implements the [subsonic api](https://www.subsonic.org/).
 
 for frontend - react/typescript.
+
+![player screenshot](image.png)
 
 ## features
 
