@@ -13,13 +13,7 @@ export interface SubsonicResponse<T = Record<string, unknown>> {
     } & T;
 }
 
-// getIndexes 
-export type GonicIndexesResponse = SubsonicResponse<{
-    indexes: {
-        index: GonicIndex[];
-    };
-}>;
-
+// gonic index from getIndexes or getArtists
 export type GonicIndex = {
     name: string;  // "#", "a", "b", etc.
     artist: Array<{
@@ -29,6 +23,13 @@ export type GonicIndex = {
     }>;
 };
 
+// getIndexes 
+export type GonicIndexesResponse = SubsonicResponse<{
+    indexes: {
+        index: GonicIndex[];
+    };
+}>;
+
 // labels (from getIndexes)
 export type Label = {
     name: string;
@@ -36,4 +37,19 @@ export type Label = {
 };
 
 export type LabelsMap = Record<string, Label>;
+
+// getArtists
+export type GonicArtistsResponse = SubsonicResponse<{
+    artists: {
+        index: GonicIndex[];
+    };
+}>;
+
+// artists (from getArtists)
+export type Artist = {
+    name: string;
+    albumCount: number;
+};
+
+export type ArtistsMap = Record<string, Artist>;
 
