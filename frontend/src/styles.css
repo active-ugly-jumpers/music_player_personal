@@ -138,10 +138,15 @@ nav ul {
   border-bottom: 0px;
 }
 
-nav li button {
+nav li button[role="tab"] {
   padding: 0.3rem 1.2rem;
   font-size: var(--text-sm);
   height: 100%;
+}
+
+nav li button[role="tab"][aria-selected="true"] {
+  background-color: var(--color-accent);
+  color: var(--color-text-secondary);
 }
 
 nav li+li {
