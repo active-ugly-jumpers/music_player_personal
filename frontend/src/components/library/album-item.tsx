@@ -3,7 +3,7 @@ import { type Album } from "../../gonic/types";
 export const AlbumItem = (album: Album) => {
   return (
     <li key={album.id}>
-      <button>
+      <button className="album">
         <div className="info">
           <div className="name">{album.name}</div>
           <div className="artist">

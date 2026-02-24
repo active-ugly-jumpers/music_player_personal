@@ -27,7 +27,7 @@ export const LabelsList = () => {
       {Object.entries(labels).map(([id, label]) => (
         <li key={id}>
           <button
-            className="expandable"
+            className="expandable label"
             aria-selected={activeLabel === id}
             onClick={() => handleLabelClick(id)}
           >

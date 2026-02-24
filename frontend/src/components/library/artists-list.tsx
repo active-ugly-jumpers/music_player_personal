@@ -27,7 +27,7 @@ export const ArtistsList = () => {
       {Object.entries(artists).map(([id, artist]) => (
         <li key={id}>
           <button
-            className="expandable"
+            className="expandable artist"
             aria-selected={activeArtist === id}
             onClick={() => handleArtistClick(id)}
           >
