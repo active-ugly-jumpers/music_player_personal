@@ -32,6 +32,7 @@ export type GonicIndexesResponse = SubsonicResponse<{
 
 // labels (from getIndexes)
 export type Label = {
+    id: string;
     name: string;
     albumCount: number;
 };
@@ -47,6 +48,7 @@ export type GonicArtistsResponse = SubsonicResponse<{
 
 // artists (from getArtists)
 export type Artist = {
+    id: string;
     name: string;
     albumCount?: number;
 };
@@ -56,17 +58,7 @@ export type ArtistsMap = Record<string, Artist>;
 // getAlbumList2
 export type GonicAlbumsResponse = SubsonicResponse<{
     albumList2: {
-        album: Array<{
-            id: string;
-            name: string;
-            year: number;
-            created: string;
-            coverArt: string;
-            artists: Array<{
-                id: string;
-                name: string;
-            }>;
-        }>;
+        album: Album[];
     };
 }>;
 
@@ -74,12 +66,33 @@ export type Album = {
     id: string;
     name: string;
     year: number;
-    created: Date;
+    created: string;  // ISO date string
     coverArt: string;
-    artists: string[];
+    artists: Array<{
+        id: string;
+        name: string;
+    }>;
 };
 
 export type AlbumsMap = Record<string, Album>;
+
+// getMusicDirectory (for label albums)
+export type GonicMusicDirectoryResponse = SubsonicResponse<{
+    directory: {
+        child: Array<{
+            id: string;
+        }>;
+    };
+}>;
+
+// getArtist (for artist albums)
+export type GonicArtistResponse = SubsonicResponse<{
+    artist: {
+        album: Array<{
+            id: string;
+        }>;
+    };
+}>;
 
 
 
