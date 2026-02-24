@@ -12,17 +12,32 @@ const tabs: Tab[] = [
   { key: "random", label: "random" },
 ];
 
-export const NavigationTabs = () => {
+type NavigationTabsProps = {
+  activeTab: TabKey;
+  onTabChange: (tabKey: TabKey) => void;
+};
+
+export const NavigationTabs = ({
+  activeTab,
+  onTabChange,
+}: NavigationTabsProps) => {
   return (
     <nav>
       <ul role="tablist">
-        {tabs.map((tab) => (
-          <li key={tab.key}>
-            <button role="tab" aria-selected="true">
-              {tab.label}
-            </button>
-          </li>
-        ))}
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.key;
+          return (
+            <li key={tab.key}>
+              <button
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => onTabChange(tab.key)}
+              >
+                {tab.label}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
