@@ -182,7 +182,7 @@ nav li:hover {
   align-items: flex-start;
 }
 
-.library li:hover {
+.library li button:hover {
   background-color: var(--color-hover);
 }
 

@@ -21,6 +21,7 @@ export const LabelsList = () => {
       setActiveLabel(labelId);
     }
   }
+
   return (
     <ul>
       {Object.entries(labels).map(([id, label]) => (
