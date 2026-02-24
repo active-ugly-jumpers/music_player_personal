@@ -139,7 +139,7 @@ nav ul {
 }
 
 nav li button[role="tab"] {
-  padding: 0.3rem 1.2rem;
+  padding: 0.3rem 1rem;
   font-size: var(--text-sm);
   height: 100%;
 }
@@ -171,13 +171,26 @@ nav li:hover {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding: 1.2rem;
+  padding: 0 1rem;
+  align-items: center;
+  height: 3.5rem;
+}
+
+.library li button .info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .library li:hover {
   background-color: var(--color-hover);
 }
 
-.meta {
+.meta,
+.artist {
   font-size: var(--text-sm);
+}
+
+.library li button .expandable [aria-selected="true"] {
+  background-color: var(--color-hover);
 }
