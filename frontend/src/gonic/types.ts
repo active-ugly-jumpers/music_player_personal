@@ -48,8 +48,40 @@ export type GonicArtistsResponse = SubsonicResponse<{
 // artists (from getArtists)
 export type Artist = {
     name: string;
-    albumCount: number;
+    albumCount?: number;
 };
 
 export type ArtistsMap = Record<string, Artist>;
+
+// getAlbumList2
+export type GonicAlbumsResponse = SubsonicResponse<{
+    albumList2: {
+        album: Array<{
+            id: string;
+            name: string;
+            year: number;
+            created: string;
+            coverArt: string;
+            artists: Array<{
+                id: string;
+                name: string;
+            }>;
+        }>;
+    };
+}>;
+
+export type Album = {
+    id: string;
+    name: string;
+    year: number;
+    created: Date;
+    coverArt: string;
+    artists: string[];
+};
+
+export type AlbumsMap = Record<string, Album>;
+
+
+
+
 
