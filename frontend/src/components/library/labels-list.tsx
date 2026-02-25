@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useLabels } from "../../hooks/useLabels";
 import { useAlbums } from "../../hooks/useAlbums";
-import { useLabelAlbums } from "../../hooks/useLabelAlbums";
+import { fetchLabelAlbums } from "../../gonic/api";
 import { AlbumItem } from "./album-item";
 import { type ListProps } from "./types";
 
 export const LabelsList = ({ onAlbumSelect }: ListProps) => {
   const { albums } = useAlbums();
   const { labels, error } = useLabels();
-  const { getLabelAlbums } = useLabelAlbums();
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
   const [labelAlbumIds, setLabelAlbumIds] = useState<string[]>([]);
 
@@ -18,7 +17,7 @@ export const LabelsList = ({ onAlbumSelect }: ListProps) => {
     if (activeLabel === labelId) {
       setActiveLabel(null); // Collapse
     } else {
-      const ids = await getLabelAlbums(labelId);
+      const ids = await fetchLabelAlbums(labelId);
       setLabelAlbumIds(ids);
       setActiveLabel(labelId);
     }
