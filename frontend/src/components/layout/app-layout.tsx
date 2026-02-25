@@ -8,7 +8,7 @@ export const AppLayout = () => {
     <>
       <header>listening with</header>
       <LeftPanel onAlbumSelect={setSelectedAlbum} />
-      <RightPanel album={selectedAlbum} />
+      <RightPanel albumId={selectedAlbum} />
     </>
   );
 };
