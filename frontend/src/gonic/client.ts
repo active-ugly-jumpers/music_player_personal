@@ -55,5 +55,13 @@ export const createGonicClient = () => {
         return data
     }
 
-    return request;
+    function getCoverArtUrl(coverArtId: string, size?: number): string | null {
+        return buildUrl("getCoverArt", { id: coverArtId, ...(size && { size }) }).toString();
+    }
+
+    function getStreamUrl(trackId: string): string {
+        return buildUrl("stream", { id: trackId, format: "raw" }).toString();
+    }
+
+    return { request, getCoverArtUrl, getStreamUrl }
 }

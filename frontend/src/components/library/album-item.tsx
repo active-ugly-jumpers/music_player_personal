@@ -11,7 +11,7 @@ export const AlbumItem = ({ album, onAlbumSelect }: AlbumItemProps) => {
       <button className="album" onClick={() => onAlbumSelect(album.id)}>
         <div className="info">
           <div className="name">{album.name}</div>
-          <div className="artist">
+          <div className="artists">
             {album.artists.map((artist) => artist.name).join(", ")}
           </div>
         </div>

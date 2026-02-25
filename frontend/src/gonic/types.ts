@@ -68,6 +68,7 @@ export type Album = {
     year: number;
     created: string;  // ISO date string
     coverArt: string;
+    duration: number;
     artists: Array<{
         id: string;
         name: string;
