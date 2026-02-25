@@ -13,7 +13,7 @@ const TAB_COMPONENTS: Record<TabKey, React.ComponentType<ListProps>> = {
   random: RandomList,
 };
 
-export const LeftPanel = ({ onAlbumSelect }: ListProps) => {
+export const LeftPanel = ({ selectedAlbum, onAlbumSelect }: ListProps) => {
   const [activeTab, setActiveTab] = useState<TabKey>("labels");
 
   const ActiveComponent = TAB_COMPONENTS[activeTab];
@@ -21,7 +21,10 @@ export const LeftPanel = ({ onAlbumSelect }: ListProps) => {
     <>
       <NavigationTabs activeTab={activeTab} onTabChange={setActiveTab} />
       <section className="library">
-        <ActiveComponent onAlbumSelect={onAlbumSelect} />
+        <ActiveComponent
+          selectedAlbum={selectedAlbum}
+          onAlbumSelect={onAlbumSelect}
+        />
       </section>
     </>
   );

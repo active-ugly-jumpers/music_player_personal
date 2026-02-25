@@ -5,7 +5,7 @@ import { fetchLabelAlbums } from "../../gonic/api";
 import { AlbumItem } from "./album-item";
 import { type ListProps } from "./types";
 
-export const LabelsList = ({ onAlbumSelect }: ListProps) => {
+export const LabelsList = ({ selectedAlbum, onAlbumSelect }: ListProps) => {
   const { albums } = useAlbums();
   const { labels, error } = useLabels();
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
@@ -42,6 +42,7 @@ export const LabelsList = ({ onAlbumSelect }: ListProps) => {
                   <AlbumItem
                     key={albumId}
                     album={albums[albumId]}
+                    selected={selectedAlbum === albumId}
                     onAlbumSelect={onAlbumSelect}
                   />
                 );

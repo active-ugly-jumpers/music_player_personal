@@ -7,7 +7,10 @@ export const AppLayout = () => {
   return (
     <>
       <header>listening with</header>
-      <LeftPanel onAlbumSelect={setSelectedAlbum} />
+      <LeftPanel
+        selectedAlbum={selectedAlbum}
+        onAlbumSelect={setSelectedAlbum}
+      />
       <RightPanel albumId={selectedAlbum} />
     </>
   );

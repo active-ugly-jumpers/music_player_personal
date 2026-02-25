@@ -3,12 +3,21 @@ import { type Album } from "../../gonic/types";
 type AlbumItemProps = {
   album: Album;
   onAlbumSelect: (albumId: string) => void;
+  selected?: boolean;
 };
 
-export const AlbumItem = ({ album, onAlbumSelect }: AlbumItemProps) => {
+export const AlbumItem = ({
+  album,
+  onAlbumSelect,
+  selected,
+}: AlbumItemProps) => {
   return (
     <li>
-      <button className="album" onClick={() => onAlbumSelect(album.id)}>
+      <button
+        className="album"
+        aria-selected={selected}
+        onClick={() => onAlbumSelect(album.id)}
+      >
         <div className="info">
           <div className="name">{album.name}</div>
           <div className="artists">

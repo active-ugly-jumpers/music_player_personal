@@ -2,7 +2,7 @@ import { useAlbums } from "../../hooks/useAlbums";
 import { AlbumItem } from "./album-item";
 import { type ListProps } from "./types";
 
-export const RandomList = ({ onAlbumSelect }: ListProps) => {
+export const RandomList = ({ selectedAlbum, onAlbumSelect }: ListProps) => {
   const { albums, error } = useAlbums();
   if (error) return <div>Error: {error.message}</div>;
 
@@ -14,7 +14,12 @@ export const RandomList = ({ onAlbumSelect }: ListProps) => {
   return (
     <ul>
       {randomAlbums.map(([id, album]) => (
-        <AlbumItem key={id} album={album} onAlbumSelect={onAlbumSelect} />
+        <AlbumItem
+          key={id}
+          album={album}
+          selected={selectedAlbum === id}
+          onAlbumSelect={onAlbumSelect}
+        />
       ))}
     </ul>
   );
