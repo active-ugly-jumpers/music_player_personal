@@ -1,12 +1,17 @@
 import { type Album } from "../../gonic/types";
 
-export const AlbumItem = (album: Album) => {
+type AlbumItemProps = {
+  album: Album;
+  onAlbumSelect: (albumId: string) => void;
+};
+
+export const AlbumItem = ({ album, onAlbumSelect }: AlbumItemProps) => {
   return (
-    <li key={album.id}>
-      <button className="album">
+    <li>
+      <button className="album" onClick={() => onAlbumSelect(album.id)}>
         <div className="info">
           <div className="name">{album.name}</div>
-          <div className="artist">
+          <div className="artists">
             {album.artists.map((artist) => artist.name).join(", ")}
           </div>
         </div>

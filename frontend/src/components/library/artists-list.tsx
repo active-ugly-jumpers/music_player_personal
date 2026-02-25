@@ -3,8 +3,9 @@ import { useArtists } from "../../hooks/useArtists";
 import { useAlbums } from "../../hooks/useAlbums";
 import { fetchArtistAlbums } from "../../gonic/api";
 import { AlbumItem } from "./album-item";
+import { type ListProps } from "./types";
 
-export const ArtistsList = () => {
+export const ArtistsList = ({ onAlbumSelect }: ListProps) => {
   const { albums } = useAlbums();
   const { artists, error } = useArtists();
   const [activeArtist, setActiveArtist] = useState<string | null>(null);
@@ -37,8 +38,13 @@ export const ArtistsList = () => {
           {activeArtist === id && (
             <ul>
               {artistAlbumIds.map((albumId) => {
-                const album = albums[albumId];
-                return AlbumItem(album);
+                return (
+                  <AlbumItem
+                    key={albumId}
+                    album={albums[albumId]}
+                    onAlbumSelect={onAlbumSelect}
+                  />
+                );
               })}
             </ul>
           )}

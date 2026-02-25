@@ -1,9 +1,10 @@
-import { PlayerDisplay } from "../player/player-display";
+import { Player } from "../player/player";
+import { type PlayerProps } from "../player/types";
 
-export const RightPanel = () => {
+export const RightPanel = ({ albumId = null }: PlayerProps) => {
   return (
     <section className="player">
-      <PlayerDisplay />
+      <Player albumId={albumId} />
     </section>
   );
 };

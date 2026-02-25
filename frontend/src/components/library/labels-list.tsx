@@ -3,8 +3,9 @@ import { useLabels } from "../../hooks/useLabels";
 import { useAlbums } from "../../hooks/useAlbums";
 import { fetchLabelAlbums } from "../../gonic/api";
 import { AlbumItem } from "./album-item";
+import { type ListProps } from "./types";
 
-export const LabelsList = () => {
+export const LabelsList = ({ onAlbumSelect }: ListProps) => {
   const { albums } = useAlbums();
   const { labels, error } = useLabels();
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
@@ -37,8 +38,13 @@ export const LabelsList = () => {
           {activeLabel === id && (
             <ul>
               {labelAlbumIds.map((albumId) => {
-                const album = albums[albumId];
-                return AlbumItem(album);
+                return (
+                  <AlbumItem
+                    key={albumId}
+                    album={albums[albumId]}
+                    onAlbumSelect={onAlbumSelect}
+                  />
+                );
               })}
             </ul>
           )}

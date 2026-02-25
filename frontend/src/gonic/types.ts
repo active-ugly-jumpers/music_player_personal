@@ -68,6 +68,7 @@ export type Album = {
     year: number;
     created: string;  // ISO date string
     coverArt: string;
+    duration: number;
     artists: Array<{
         id: string;
         name: string;
@@ -76,16 +77,17 @@ export type Album = {
 
 export type AlbumsMap = Record<string, Album>;
 
-// getMusicDirectory (for label albums)
+// getMusicDirectory
 export type GonicMusicDirectoryResponse = SubsonicResponse<{
     directory: {
+        parent: string;
         child: Array<{
             id: string;
         }>;
     };
 }>;
 
-// getArtist (for artist albums)
+// getArtist
 export type GonicArtistResponse = SubsonicResponse<{
     artist: {
         album: Array<{
