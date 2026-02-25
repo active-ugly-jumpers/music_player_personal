@@ -1,6 +1,6 @@
-export type TabKey = "labels" | "albums" | "artists" | "random";
+import { type TabKey } from "./types";
 
-export type Tab = {
+type Tab = {
   key: TabKey;
   label: string;
 };

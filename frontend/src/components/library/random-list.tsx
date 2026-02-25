@@ -1,7 +1,8 @@
 import { useAlbums } from "../../hooks/useAlbums";
 import { AlbumItem } from "./album-item";
+import { type ListProps } from "./types";
 
-export const RandomList = () => {
+export const RandomList = ({ onAlbumSelect }: ListProps) => {
   const { albums, error } = useAlbums();
   if (error) return <div>Error: {error.message}</div>;
 
@@ -10,5 +11,11 @@ export const RandomList = () => {
   const allEntries = Object.entries(albums);
   const randomAlbums = allEntries.sort(() => Math.random() - 0.5).slice(0, n);
 
-  return <ul>{randomAlbums.map(([id, album]) => AlbumItem(album))}</ul>;
+  return (
+    <ul>
+      {randomAlbums.map(([id, album]) => (
+        <AlbumItem key={id} album={album} onAlbumSelect={onAlbumSelect} />
+      ))}
+    </ul>
+  );
 };
