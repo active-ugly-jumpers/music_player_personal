@@ -76,16 +76,17 @@ export type Album = {
 
 export type AlbumsMap = Record<string, Album>;
 
-// getMusicDirectory (for label albums)
+// getMusicDirectory
 export type GonicMusicDirectoryResponse = SubsonicResponse<{
     directory: {
+        parent: string;
         child: Array<{
             id: string;
         }>;
     };
 }>;
 
-// getArtist (for artist albums)
+// getArtist
 export type GonicArtistResponse = SubsonicResponse<{
     artist: {
         album: Array<{

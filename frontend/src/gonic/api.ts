@@ -54,3 +54,9 @@ export const fetchArtistAlbums = async (artistId: string): Promise<string[]> => 
     const data = await client<GonicArtistResponse>("getArtist", { "id": artistId });
     return data["subsonic-response"]?.artist?.album?.map(album => album.id) ?? [];
 };
+
+export const fetchAlbumLabel = async (albumId: string): Promise<string> => {
+    const data = await client<GonicMusicDirectoryResponse>("getMusicDirectory", { "id": albumId });
+    return data["subsonic-response"]?.directory?.parent ?? "";
+};
+

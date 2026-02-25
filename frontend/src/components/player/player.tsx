@@ -1,9 +1,11 @@
 import { useAlbums } from "../../hooks/useAlbums";
 import { type PlayerProps } from "./types";
+import { fetchAlbumLabel } from "../../gonic/api";
 
 export const Player = ({ albumId = null }: PlayerProps) => {
   const { albums } = useAlbums();
   const album = !albumId ? null : albums[albumId];
+
   return (
     <>
       {!album ? (
